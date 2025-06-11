@@ -12,7 +12,17 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "declaration": true,
-    "declarationDir": "types"
+    "declarationMap": false,
+    "emitDeclarationOnly": false,
+    "noEmitOnError": true,
+    "sourceMap": false
   },
-  "exclude": ["node_modules", "example"]
+  "exclude": [
+    "node_modules",
+    "dist",
+    "example",
+    "**/*.test.ts",
+    "**/*.spec.ts"
+  ],
+  "include": ["src/**/*"]
 }

@@ -1,4 +1,4 @@
-# React Native Custom Toast Hook
+# React Native Easy Custom Toast
 
 A lightweight, customizable toast hook for React Native.
 
@@ -13,7 +13,7 @@ A lightweight, customizable toast hook for React Native.
 ## Installation
 
 ```bash
-npm install react-native-easy-toast
+npm install react-native-easy-custom-toast
 
 ```
 
@@ -22,12 +22,12 @@ npm install react-native-easy-toast
 ```typescript
 import React from 'react';
 import { View, Button } from 'react-native';
-import { useCustomToast } from 'react-native-custom-toast-hook';
+import { useEasyToast } from 'react-native-easy-custom-toast';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const MyComponent = () => {
   const { 
-    CurrentToast,
+    EasyToast,
     showSuccess,
     showError,
     showToast
@@ -85,4 +85,4 @@ const MyComponent = () => {
 
 ## License
 
-MIT# react-native-easy-toast
+MIT

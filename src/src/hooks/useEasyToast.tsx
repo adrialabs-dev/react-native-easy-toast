@@ -13,7 +13,7 @@ export interface ToastConfig {
   containerStyle?: object;
 }
 
-const EasyToast = ({
+const CustomToast = ({
   message,
   type = 'info',
   icon,
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const useCustomToast = () => {
+export const useEasyToast = () => {
   const [toast, setToast] = useState<ToastConfig | null>(null);
 
   const showToast = useCallback((config: ToastConfig) => {
@@ -118,7 +118,7 @@ export const useCustomToast = () => {
     showToast({ ...config, message, type: 'info' });
   }, [showToast]);
 
-  const EasyToast = () => toast ? <EasyToast {...toast} /> : null;
+  const EasyToast = () => toast ? <CustomToast {...toast} /> : null;
 
   return { 
     EasyToast,
