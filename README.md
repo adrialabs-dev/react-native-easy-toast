@@ -17,7 +17,7 @@ npm install react-native-easy-custom-toast
 
 ```
 
-## Usage
+## Usage without Provider
 
 ```typescript
 import React from 'react';
@@ -62,6 +62,65 @@ const MyComponent = () => {
 };
 ```
 
+## Usage with Provider
+
+# On your App.tsx file
+```typescript
+
+import React from 'react';
+import { View, Button } from 'react-native';
+import { ToastProvider } from 'react-native-easy-custom-toast';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+
+
+const App = () => {
+  <ToastProvider>
+    <Navigator/>
+  </ToastProvider>
+}
+
+export default App
+
+```
+# On your component
+
+```typescript
+
+const MyComponent = () => {
+  const { 
+    showSuccess,
+    showError,
+    showToast
+  } = useEasyToastProvider();
+
+  return (
+    <View style={{ flex: 1 }}>
+      <Button
+        title="Show Success"
+        onPress={() => showSuccess('Operation completed!')}
+      />
+      
+      <Button
+        title="Show Error"
+        onPress={() => showError('Something went wrong')}
+      />
+      
+      <Button
+        title="Custom Toast"
+        onPress={() => showToast({
+          message: 'Custom message',
+          type: 'custom',
+          icon: <Icon name="star" size={24} color="gold" />,
+          containerStyle: { backgroundColor: 'purple' },
+          duration: 3000,
+        })}
+      />
+      
+    </View>
+  );
+};
+```
+
 ## API
 
 ### Hook Methods
@@ -82,6 +141,7 @@ const MyComponent = () => {
 | `image`          | `string`           | `undefined` | Image URL                        |
 | `textStyle`      | `object`           | `{}`        | Custom text styles               |
 | `containerStyle` | `object`           | `{}`        | Custom container styles          |
+| `position`     | `'top'\|'middle'\|'bottom'\| `'top'`| Toast default position          |
 
 ## License
 

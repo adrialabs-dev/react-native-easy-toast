@@ -1,5 +1,6 @@
-import React from 'react';
-export type ToastType = 'success' | 'error' | 'info' | 'custom';
+import React from "react";
+export type ToastType = "success" | "error" | "info" | "custom";
+export type ToastPosition = "top" | "middle" | "bottom";
 export interface ToastConfig {
     message: string;
     type?: ToastType;
@@ -8,6 +9,7 @@ export interface ToastConfig {
     image?: string;
     textStyle?: object;
     containerStyle?: object;
+    position?: ToastPosition;
 }
 export declare const useEasyToast: () => {
     EasyToast: () => React.JSX.Element | null;

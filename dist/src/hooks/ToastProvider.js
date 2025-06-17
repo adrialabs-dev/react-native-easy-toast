@@ -33,10 +33,12 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.useEasyToast = void 0;
+exports.useEasyToastProvider = exports.ToastProvider = void 0;
+// src/hooks/ToastProvider.tsx
 const react_1 = __importStar(require("react"));
 const CustomToast_1 = require("./CustomToast");
-const useEasyToast = () => {
+const ToastContext = (0, react_1.createContext)(undefined);
+const ToastProvider = ({ children, }) => {
     const [toast, setToast] = (0, react_1.useState)(null);
     const showToast = (0, react_1.useCallback)((config) => {
         setToast(config);
@@ -51,13 +53,17 @@ const useEasyToast = () => {
     const showInfo = (0, react_1.useCallback)((message, config) => {
         showToast(Object.assign(Object.assign({}, config), { message, type: "info" }));
     }, [showToast]);
-    const EasyToast = () => (toast ? <CustomToast_1.CustomToast {...toast}/> : null);
-    return {
-        EasyToast,
-        showToast,
-        showSuccess,
-        showError,
-        showInfo,
-    };
+    return (<ToastContext.Provider value={{ showToast, showSuccess, showError, showInfo }}>
+      {children}
+      {toast && <CustomToast_1.CustomToast {...toast}/>}
+    </ToastContext.Provider>);
 };
-exports.useEasyToast = useEasyToast;
+exports.ToastProvider = ToastProvider;
+const useEasyToastProvider = () => {
+    const context = (0, react_1.useContext)(ToastContext);
+    if (!context) {
+        throw new Error("useToast debe usarse dentro de ToastProvider");
+    }
+    return context;
+};
+exports.useEasyToastProvider = useEasyToastProvider;
